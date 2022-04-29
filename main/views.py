@@ -10,6 +10,10 @@ def home(request):
 def about(request):
     return render(request, 'main/about.html')
 
+
+# Functional Based views
+
+# CREATE POST
 def blog_create(request):
 
     if request.method == "POST":
@@ -17,3 +21,14 @@ def blog_create(request):
         Post.objects.create(user_id = 1, title = request.POST["title"], content = request.POST["content"])
 
     return render(request, 'blog/create.html')
+
+
+def blog_list(request):
+
+    context = {}
+    posts = Post.objects.all()
+    context['posts'] = posts
+
+   
+
+    return render(request, 'blog/blog_list.html', context)

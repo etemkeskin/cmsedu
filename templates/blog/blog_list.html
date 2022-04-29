@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog List Page</title>
+</head>
+<body>
+    <h1>Tüm Bloglar</h1>
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Başlık</th>
+            <th>İçerik</th>
+            <th>Oluşturulma Tarihi</th>
+            <th>Güncelleme Tarihi</th>
+          </tr>
+        </thead>
+        <tbody>
+
+            {% for post in posts%}
+          <tr>
+            <td>{{post.title}}</td>
+            <td>{{post.content}}</td>
+            <td>{{post.create_at}}</td>
+            <td>{{post.update_at}}</td>
+          </tr>
+          {% endfor %}
+
+        </tbody>
+      </table>
+</body>
+</html>
