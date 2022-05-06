@@ -1,4 +1,5 @@
-from django.http import HttpResponse
+from django.urls import reverse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from main.models import Post
 
@@ -21,7 +22,23 @@ def blog_create(request):
         Post.objects.create(user_id = 1, title = request.POST["title"], content = request.POST["content"])
 
     return render(request, 'blog/create.html')
+# UPDATE BLOG
+def update_blog(request, id):
+    context = {}
+    post = Post.objects.filter(id = id).first()
 
+    if request.method == "POST":
+        post.title = request.POST['title']
+        post.content = request.POST['content']
+        post.save()
+
+    context['post'] = post
+    return render(request, 'blog/update.html', context) 
+
+#DELETE BLOG
+def delete_blog(request, id):
+    Post.objects.filter(id = id).delete()
+    return HttpResponseRedirect(reverse('main:blog_list'))
 
 def blog_list(request):
 
