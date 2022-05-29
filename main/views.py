@@ -40,12 +40,11 @@ def delete_blog(request, id):
     Post.objects.filter(id = id).delete()
     return HttpResponseRedirect(reverse('main:blog_list'))
 
+#BLOG LIST
 def blog_list(request):
 
     context = {}
     posts = Post.objects.all()
     context['posts'] = posts
-
-   
 
     return render(request, 'blog/blog_list.html', context)

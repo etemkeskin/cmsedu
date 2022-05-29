@@ -1,14 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog List Page</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% block css %}
+
+{% endblock css %}
+
+{% block content %}
+  <div class="container">
     <h1>Tüm Bloglar</h1> 
-    <a href="{% url 'main:blog_create' %}">Blog Ekle</a>
+    <a href="{% url 'main:blog_create' %}" class="btn btn-primary">Blog Ekle</a>
     <table class="table table-striped">
         <thead>
           <tr>
@@ -20,20 +18,25 @@
           </tr>
         </thead>
         <tbody>
-
             {% for post in posts%}
           <tr>
             <td>{{post.id}} --- {{post.title}}</td>
             <td>{{post.content}}</td>
             <td>{{post.create_at}}</td>
             <td>{{post.update_at}}</td>
-            <td><a href="{% url 'main:update_blog' post.id %}">Güncelle</a>
-              <a href="{% url 'main:delete_blog' post.id %}">Sil</a>
+            <td><a href="{% url 'main:update_blog' post.id %}" class="btn btn-success">
+              Güncelle
+            </a>
+              <a href="{% url 'main:delete_blog' post.id %}" class="btn btn-danger">Sil</a>
             </td>
           </tr>
           {% endfor %}
 
         </tbody>
       </table>
-</body>
-</html>
+  </div>
+  {% endblock content %}
+
+  {% block javascript %}
+
+  {% endblock javascript %}
